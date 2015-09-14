@@ -92,7 +92,17 @@
   <script>
     (function() {
       $('#submit').on('click', function(event) {
-        event.preventDefault()
+        event.preventDefault();
+        name = $("input[name=name]").val();
+        job = $("input[name=job-title]").val();
+        phone = $("input[name=phone]").val();
+        email = $("input[name=email]").val();
+        $("#name").text(name)
+        $("#job-title").text(job)
+        $("#phone").text(phone)
+        $("#email").text(email)
+
+
         // your code for creating the business card goes here
         // get the values from the form fields
         // add them to the business card
