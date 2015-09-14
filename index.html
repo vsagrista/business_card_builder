@@ -91,7 +91,7 @@
   <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
   <script>
     (function() {
-      $('#submit').on('click', function(event) {
+      $('form').on('submit', function(event) {
         event.preventDefault();
         name = $("input[name=name]").val();
         job = $("input[name=job-title]").val();
@@ -100,7 +100,7 @@
         $("#name").text(name)
         $("#job-title").text(job)
         $("#phone").text(phone)
-        $("#email").html("<a href='mailto:"+email+"'>"+email+"</a")
+        $("#email").html("<a href='mailto:"+email+"'>"+email+"</a>")
 
 
         // your code for creating the business card goes here
