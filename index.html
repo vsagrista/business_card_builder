@@ -59,6 +59,12 @@
     .yellow {
       background-color: #F5FF8D;
     }
+    .unicorn-mode {
+      background: -webkit-linear-gradient(red, blue); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(red, blue); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(red, blue); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(red, blue); /* Standard syntax */
+    }
   </style>
 </head>
 <body>
@@ -88,59 +94,62 @@
     </div>
   </div>
 
+  <button class="button">button</button>
+  <button class="button-color">multicolor</button>
+
   <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
   <script>
-    (function() {
-      $('form').on('submit', function(event) {
-        event.preventDefault();
-        name = $("input[name=name]").val();
-        job = $("input[name=job-title]").val();
-        phone = $("input[name=phone]").val();
-        email = $("input[name=email]").val();
+(function() {
+  $('form').on('submit', function(event) {
+    event.preventDefault();
+      var name = $("input[name=name]").val();
+      var job = $("input[name=job-title]").val();
+      var phone = $("input[name=phone]").val();
+      var email = $("input[name=email]").val();
 
  /********************** VALIDATIONS ***********************/
 
-        function validNameJob(word){
-          var regex = /^[a-zA-Z]+$/;
-            return regex.test(word);        
-        }
+    function validNameJob(word){
+      var regex = /^[a-zA-Z]+$/;
+        return regex.test(word);        
+    }  // only works with characters
 
-        function validPhone(phone) {
-          if (parseInt(phone).length === phone.length) {
-            return true;
-          }
-          else {
-            return false;
-          }
-        }
 
-        function validEmail(email) {
-            var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-            return regex.test(email);
-            }
+    function validPhone(phone) {
+      if (parseInt(phone).toString().length === phone.length) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+
+    function validEmail(email) {
+        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        return regex.test(email);
+        }
 
  /********************** CHECKING FOR EACH USER INPUT  ***********************/
 
 
-          if (validNameJob(name) && validNameJob(job)){
-               $("#name").text(name)
-               $("#job-title").text(job)}
-          else { 
-              return alert("Please, type only letters");
-          } 
-         
-          if (validPhone(phone) ) {
-                $("#phone").text(phone)}
-          else { 
-                return alert("That phone was incorrect!");
-          } 
+    if (validNameJob(name) && validNameJob(job)){
+         $("#name").text(name)
+         $("#job-title").text(job)}
+    else { 
+        return alert("Please, type only letters");
+    } 
+   
+    if (validPhone(phone) ) {
+          $("#phone").text(phone)}
+    else { 
+          return alert("That phone was incorrect!");
+    } 
 
-          if (validEmail(email)) {
-                $("#email").html("<a href='mailto:"+email+"'>"+email+"</a>")}
-          else { 
-               return alert("That email format is invalid!");
-          } 
-
+    if (validEmail(email)) {
+          $("#email").html("<a href='mailto:"+email+"'>"+email+"</a>")}
+    else { 
+         return alert("That email format is invalid!");
+    } 
         // your code for creating the business card goes here
         // get the values from the form fields
         // add them to the business card
@@ -158,6 +167,16 @@
         // add the 'yellow' class business card
         // you can also make your own classes and add them!
       });
+       //input = $(event.target)
+
+       $(".button").on("click", function(event){
+        event.preventDefault()
+        $("body").slideToggle(3000)
+       } )
+       $(".button-color").on("click", function(event){
+        event.preventDefault()
+        $("body").toggleClass("unicorn-mode")
+       } )
     })()
   </script>
 </body>
